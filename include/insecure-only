@@ -1,0 +1,4 @@
+# Only allow this URL to be accessed insecurely.  Redirect otherwise.
+if ($scheme != "http") {
+    return 301 http://$host$request_uri;
+}

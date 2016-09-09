@@ -1,0 +1,4 @@
+# Include me if you'd like to deny a specific server or block from being
+# iframed.  See global.d/map.conf and include/response-headers for detail.
+
+set $x_frame_options_override SAMEORIGIN;

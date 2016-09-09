@@ -1,0 +1,6 @@
+Complete sites served by NginX, except for paths that are served from
+/etc/nginx/root/ such as /favicon.ico, /proxyerror/, /robots.txt, etc.
+
+The "default" site is served when nothing else matches, such as when
+receiving requests without a Host header or that mention our server IPs.
+We make requests from ELBs to /healthcheck/ that relies on this.

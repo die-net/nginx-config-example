@@ -1,0 +1,16 @@
+# Only pass through very limited headers.  Don't list Host here, so we send
+# the proxy_pass hostname to the third-party.
+
+proxy_pass_request_headers off;
+proxy_set_header Accept                 */*;
+proxy_set_header Accept-Charset         "";
+proxy_set_header Accept-Encoding        gzip;
+proxy_set_header Accept-Language        "";
+proxy_set_header Connection             $x_connection;
+proxy_set_header Content-Length         $http_content_length;
+proxy_set_header Content-Type           $http_content_type;
+proxy_set_header Sec-Websocket-Key      $http_sec_websocket_key;
+proxy_set_header Sec-Websocket-Version  $http_sec_websocket_version;
+proxy_set_header Upgrade                $x_upgrade;
+proxy_set_header User-Agent             $http_user_agent;
+proxy_set_header X-Forwarded-For        $proxy_add_x_forwarded_for;

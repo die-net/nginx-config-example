@@ -1,0 +1,12 @@
+# Include me into location blocks (NOT server blocks!) where we're
+# temporarily down for maintenance.  Adding "include
+# include/down-for-maintenance" is okay to do manually on the proxies, as
+# long as getting rid of it is done by redeploying.
+#
+# This allows company internal IPs ($x_limit_type of "i") to access and
+# throws a 520 error otherwise, which is translated in global.d/proxy.conf
+# into a 503 with the pretty maintenance page.
+
+if ($x_limit_type != "i") {
+    return 520;
+}

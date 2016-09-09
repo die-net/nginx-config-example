@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Set/Unset nocache cookie</title>
+<script type="text/javascript">
+    function set_nocache() {
+        var expire = new Date();
+        var time = expire.getTime();
+        time += 1000 * 60 * 60 * 24;
+        expire.setTime(time);
+        document.cookie="nocache=1; expires=" + expire.toUTCString() + "; path=/";
+    }
+
+    function unset_nocache() {
+        document.cookie="nocache=0; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT";
+    }
+</script>
+</head>
+<body>
+<button onclick="javascript:set_nocache();">Disable caching for 24 hours</button>
+<button onclick="javascript:unset_nocache();">Enable caching</button>
+</body>
+</html>

@@ -1,0 +1,5 @@
+# Include me in server or location blocks where 404s shouldn't be
+# authorative, but should instead be retried on multiple upstreams.
+# (e.g. during deploys)
+
+proxy_next_upstream error timeout invalid_header http_404 http_500 http_502 http_503 http_504;

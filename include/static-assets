@@ -1,0 +1,33 @@
+# Mark assets as cachable by proxies, disabling "u" cookie support.  Use in
+# combination with the "expires" command to define the duration that it can
+# be cached.  Also allows the use of ETag/Last-Modified and
+# If-None-Match/If-Modified-Since if those are supported by the upstream.
+#
+# WARNING: This content shouldn't use cookies or vary based on anything not
+# found in the URL.  Don't use on URLs requiring login!
+
+include include/response-headers;
+
+# POSTs to static assets don't make sense.
+include include/get-only;
+
+proxy_hide_header Cache-Control;
+proxy_hide_header Expires;
+proxy_hide_header Pragma;
+proxy_hide_header Set-Cookie;
+
+# Allow content to be cacheable by proxies.
+add_header Cache-Control "public";
+
+# Disable tracking cookies on cacheable content
+userid off;
+
+# Allow this content to be cached by this proxy.
+proxy_cache on;
+proxy_ignore_headers Expires Cache-Control Set-Cookie;
+
+# When serving from disk, look for a .gz first and serve it if it exists.
+gzip_static on;
+
+# Allow a much higher request rate for static assets.
+limit_req zone=fast_limit_buckets burst=5000;

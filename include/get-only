@@ -1,0 +1,7 @@
+# Include me into server or location blocks where only the GET or HEAD
+# methods are allowed. Use this on read-only content or on redirects, where
+# redirecting non-GET won't work right.
+
+if ($request_method !~ ^(?:GET|HEAD)$) {
+    return 405;
+}

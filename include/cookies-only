@@ -1,0 +1,14 @@
+# To lightly protect some parts of the site from stupid scrapers, only allow
+# this URL to be accessed if browser either has an existing "u" cookie or is
+# willing to accept one after a redirect.  See $cookietest_action in
+# global.d/map.conf.
+#
+# WARNING: Only use this on URLs that are disallowed by robots.txt!
+
+if ($cookietest_action = "r") {
+    return 302 $scheme://$host$uri?cookietest=1&$args;
+}
+
+if ($cookietest_action = "f") {
+    return 400;
+}

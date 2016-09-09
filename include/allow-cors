@@ -1,0 +1,5 @@
+# Include me if you'd like to allow a specific server or block to allow
+# cross-domain XMLHttpRequest, web fonts, etc.  See global.d/map.conf and
+# include/response-headers for detail.
+
+set $x_access_control_allow_origin "*";

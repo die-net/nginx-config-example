@@ -1,0 +1,12 @@
+# Set up pretty error pages for most error codes.  Include me after you
+# override any of these in a location block.
+
+error_page 403 /proxyerror/403.html;
+error_page 404 /proxyerror/404.html;
+error_page 413 /proxyerror/413.html;
+error_page 418 /proxyerror/418.html;
+error_page 429 /proxyerror/429.html;
+error_page 500 502 503 504 /proxyerror/50x.html;
+
+# Turn 520 into a 503 and show the pretty down-for-maintenance page.
+error_page 520 =503 /proxyerror/520.html;

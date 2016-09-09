@@ -1,0 +1,40 @@
+# Included into various server blocks where we serve assets from S3.
+
+location /s3/ {
+    return 404;
+}
+
+location /s3/stuff/ {
+    include include/proxy-to-s3;
+    include include/no-args;
+    proxy_pass http://stuff-example-com.s3.amazonaws.com/;
+    expires 30d;
+}
+
+location /s3/things/ {
+    include include/proxy-to-s3;
+    include include/no-args;
+    include include/allow-cors;
+    proxy_pass http://things-example-com.s3.amazonaws.com/;
+    expires 30d;
+}
+
+location /s3/youtube/vi/ {
+    include include/proxy-to-s3;
+    include include/no-args;
+    proxy_pass http://img.youtube.com/vi/;
+    expires 30d;
+}
+
+# Paths with parameters like "=s80" or "=c240x160" on the end are
+# requests for resizing.  Pass to fotomat.
+location ~ =p?w?[cs][0-9]*(?:x[0-9]*)?$ {
+    include include/static-assets;
+    include include/no-args;
+
+    proxy_pass http://fotomat-upstream;
+
+    expires 365d;
+    proxy_cache_valid 200 7d;
+    proxy_cache_valid 403 404 415 413 1h;
+}

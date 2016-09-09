@@ -1,0 +1,11 @@
+# Use at the end of a list of "allow" statements or includes, to deny all
+# other IPs.
+
+deny all;
+
+# In this safe, ACLed location block, replace the default limit_req.  Trust
+# our partners with a very high rate-limit, allowing up to 100 requests per
+# second per IP, and delay up to 10 seconds to be able to fulfill that
+# without throwing a 503.
+
+limit_req zone=fast_limit_buckets burst=5000;

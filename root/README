@@ -1,0 +1,26 @@
+A root is a set of branding elements served by NginX, and must include:
+
+    /favicon.ico            - Default favicon if no meta icon header sent
+
+    /apple-touch-icon*.png  - Various icons asked for by iOS
+
+    /proxyerror/403.html    - Permission denied
+    /proxyerror/404.html    - Not found
+    /proxyerror/413.html    - Your POST is too big (> 10 megabytes)
+    /proxyerror/418.html    - The site you asked for is not configured
+    /proxyerror/429.html    - You've made too many requests lately and hit our rate-limit.
+    /proxyerror/50x.html    - Server error, unknown cause
+    /proxyerror/520.html    - We've taken the site down for maintenance
+
+
+The "shared" root is a special case and serves files for all roots:
+
+    /robots-$host.txt         - When user requests /robots.txt, we check if there is a host-specific one first.
+    /robots-$domain.txt       - When no $host found, subdomain up to the first dot is cut off and tried.
+    /robots.txt               - When neither of the above is found, this is served.
+
+    /crossdomain-$host.xml    - Same as above, for /crossdomain.xml.
+    /crossdomain-$domain.xml
+    /crossdomain.xml
+
+    /google*.html             - Proof of domain ownership for various Google accounts.

@@ -1,0 +1,7 @@
+# Only allow this URL to be accessed securely.  Redirect otherwise.
+# Warning: This may result in data being sent in the clear.  Use
+# include/secure-only on POSTs and sensitive locations.
+
+if ($scheme != "https") {
+    return 301 https://$host$request_uri;
+}

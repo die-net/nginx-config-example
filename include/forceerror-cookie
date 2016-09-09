@@ -1,0 +1,19 @@
+if ($cookie_forceerror = "403") {
+    return 403;
+}
+
+if ($cookie_forceerror = "404") {
+    return 404;
+}
+
+if ($cookie_forceerror = "444") {
+    return 444;
+}
+
+if ($cookie_forceerror = "500") {
+    return 500;
+}
+
+if ($cookie_forceerror = "520") {
+    return 520;
+}

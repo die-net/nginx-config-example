@@ -1,0 +1,25 @@
+# Using proxy_hide_header or add_header in any server or location block will
+# clear these unless you include them again.
+
+proxy_hide_header Access-Control-Allow-Origin;	# Sent by proxy only
+proxy_hide_header Alternate-Protocol;		# Sent by proxy only
+proxy_hide_header P3P;                          # Sent by proxy only
+proxy_hide_header Strict-Transport-Security;    # Sent by proxy only
+proxy_hide_header X-AspNet-Version;             # ASP advertising
+proxy_hide_header X-Frame-Options;              # Sent by proxy only
+proxy_hide_header X-Log;                        # Sent to proxy
+proxy_hide_header X-Powered-By;                 # ASP/PHP advertising
+proxy_hide_header X-Rack-Cache;                 # Sent to proxy
+proxy_hide_header X-Request-Id;                 # Sent to proxy
+proxy_hide_header X-Runtime;                    # Sent to proxy
+proxy_hide_header X-XSS-Protection;             # Sent by proxy only
+
+# add CORS header for XMLHttpRequest, web fonts, etc.
+add_header Access-Control-Allow-Origin $x_access_control_allow_origin;
+
+# Ask IE 8+, Safari 4+, Chrome 4+, Firefox 3.6.9+ to control framing.
+# See global.d/map.conf and include/allow-iframing.
+add_header X-Frame-Options $x_frame_options;
+
+# Ask IE 8+, Safari, Chrome to not render reflected XSS that they identify.
+add_header X-XSS-Protection '1; mode=block';

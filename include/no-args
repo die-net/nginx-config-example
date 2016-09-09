@@ -1,0 +1,4 @@
+# Return 404 if there were args supplied.
+if ($args) {
+    return 404;
+}

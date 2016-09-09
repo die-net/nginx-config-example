@@ -1,0 +1,18 @@
+# Include me in server blocks where the DNS points to that IP, where domain
+# is not *.example.com, and we'll only be serving http.
+#
+# Note that attempting to use https for any of these hostnames will result
+# in an SSL warning, but after clicking through that, it will eventually
+# redirect properly.
+
+listen *:80;
+listen *:443 ssl;
+listen *:81;
+listen *:444 ssl;
+
+# This is the default certificate in global.d/default_server.conf.  Save
+# memory by not defining it again unnecessarily:
+#ssl_certificate     /etc/ssl/example/wildcard.example.com.crt;
+#ssl_certificate_key /etc/ssl/example/wildcard.example.com.key;
+
+include include/server-base;

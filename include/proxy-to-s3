@@ -1,0 +1,20 @@
+# Include me in location blocks where there's a proxy_pass to Amazon S3. 
+# Also required in the block is an "expires 1h" or similar.
+
+# S3 returns 403 when files are missing. Translate to 404 instead.
+error_page 403 =404 /proxyerror/404.html;
+# Add back use of pretty error pages for other errors.
+include include/pretty-error-pages;
+
+# We only respond to HEAD or GET.
+include include/get-only;
+
+# We are definitely static content.
+include include/static-assets;
+
+# Ignore host header and args for cache key.  Cache based on first
+# server_name and path.
+proxy_cache_key http://$server_name$uri;
+
+# And we want to pass S3 its own hostname, not ours.
+include include/proxy-headers-external;

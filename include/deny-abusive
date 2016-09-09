@@ -1,0 +1,5 @@
+# For abusive countries/IPs, return 403 for some URLs.
+# TODO: Remove me when we get a CAPTCHA.
+if ($x_limit_type = "a") {
+    return 403;
+}

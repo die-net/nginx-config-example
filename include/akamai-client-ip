@@ -1,0 +1,14 @@
+# Include me in any server blocks where Akamai is used as the CDN to
+# properly log, rate-limit, and access-control based on client IP.
+#
+# The Akamai configuration must have "Optional Features" -> "Edge Services -
+# General" enabled and "True Client IP Header Name" set to
+# "Jood1xowian-IP".  This is a secret header we use to tell if a request
+# came in from Akamai and what the original IP was if so.  (Akamai has too
+# many IPs to list in set_real_ip_from.)
+#
+# Warning: Anyone who knows the string "Jood1xowian-IP" can spoof IPs to us! 
+
+real_ip_header Jood1xowian-IP;
+real_ip_recursive off;
+set_real_ip_from 0.0.0.0/0;

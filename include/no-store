@@ -1,0 +1,16 @@
+# Disable all browser and proxy caching, including back button, in 
+# all modern browsers.  Required for "logout" to be secure.
+#
+# WARNING: If used on more than a few elements of a page, this will slow
+# down the user experience significantly.
+
+include include/response-headers;
+
+proxy_hide_header Cache-Control;
+proxy_hide_header Pragma;
+proxy_hide_header Expires;
+proxy_hide_header ETag;
+proxy_hide_header Last-Modified;
+
+add_header Cache-Control "no-cache,no-store,max-age=0,must-revalidate";
+add_header Expires "-1";

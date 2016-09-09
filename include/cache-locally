@@ -1,0 +1,23 @@
+# Mark content as cachable by nginx for 5 minutes, but not cacheable by
+# proxies or browsers.  If cookies are sent by the upstream, it won't be
+# cached.
+
+include include/response-headers;
+
+proxy_hide_header Cache-Control;
+proxy_hide_header Pragma;
+proxy_hide_header Expires;
+
+# The combination "max-age=0,private,must-revalidate" should do the same
+# thing as "no-cache", except the latter has started to be interpreted as
+# "no-store" by some browsers, which we don't want here.
+
+add_header Cache-Control "max-age=0,private,must-revalidate";
+add_header Expires "-1";
+
+# Allow this content to be cached by this proxy.
+proxy_cache on;
+proxy_ignore_headers Expires Cache-Control;
+
+# Save good results for 5min.
+proxy_cache_valid 200 301 404 5m;

@@ -1,0 +1,18 @@
+# Disable almost all browser and proxy caching, in all modern browsers.
+# Allows content to be stored on disk and revalidated using
+# If-Modified-Since or If-None-Match and the use of the "back" button.
+#
+# WARNING: This is not safe to guarantee "logout" to be secure.
+
+include include/response-headers;
+
+proxy_hide_header Cache-Control;
+proxy_hide_header Pragma;
+proxy_hide_header Expires;
+
+# The combination "max-age=0,must-revalidate" should do the same thing as
+# "no-cache", except the latter has started to be interpreted as "no-store"
+# by some browsers, which we don't want here.
+
+add_header Cache-Control "max-age=0,must-revalidate";
+add_header Expires "-1";

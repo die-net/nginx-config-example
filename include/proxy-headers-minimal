@@ -1,0 +1,27 @@
+# Aggressively filter headers to the minimal set required to answer a
+# request.  Only pass a subset of request headers.  See include/map for the
+# $x_geo and x_viewer_id values.  In alphabetical order to make sniffing
+# easier.
+
+proxy_set_header Accept                 $canonical_accept;
+proxy_set_header Accept-Charset         "";
+proxy_set_header Accept-Encoding        "";  # Disable gzip from upstream.
+proxy_set_header Accept-Language        "";
+proxy_set_header Content-Length         $http_content_length;
+proxy_set_header Content-Type           $http_content_type;
+proxy_set_header Connection             $x_connection;
+proxy_set_header Cookie                 "";
+proxy_set_header Host                   $host;
+proxy_set_header Origin                 "";
+proxy_set_header If-Modified-Since      "";
+proxy_set_header If-None-Match          "";
+proxy_set_header Sec-Websocket-Key      $http_sec_websocket_key;
+proxy_set_header Sec-Websocket-Version  $http_sec_websocket_version;
+proxy_set_header Upgrade                $x_upgrade;
+proxy_set_header User-Agent             "";
+proxy_set_header X-Forwarded-For        "";
+proxy_set_header X-Forwarded-Protocol   $scheme;
+proxy_set_header X-HTTP-Method-Override "";
+proxy_set_header X-Real-IP              $remote_addr;
+proxy_set_header X-Requested-With       "";
+proxy_set_header X-Geo                  $x_geo;
