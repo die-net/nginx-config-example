@@ -35,43 +35,6 @@ location /debug/ {
     return 404;
 }
 
-location = /googlee595393d123fb944.html {
-    root /etc/nginx/root/shared;
-
-    allow all;
-
-    include include/static-assets;
-    expires 12h;
-}
-
-location = /google1ec5c5bcc9bb70f0.html {
-    root /etc/nginx/root/shared;
-
-    allow all;
-
-    include include/static-assets;
-    expires 12h;
-}
-
-location = /google04d584179ee7cdb0.html {
-    root /etc/nginx/root/shared;
-
-    allow all;
-
-    include include/static-assets;
-    expires 12h;
-}
-
-# Silently reject bad requests by broken robots.
-location /http:/ {
-    return 404;
-}
-
-# Silently reject bad requests by broken robots.
-location /https:/ {
-    return 404;
-}
-
 location = /internal {
     return 404;
 }
@@ -87,42 +50,6 @@ location /proxyerror/ {
     ssi on;
 }
 
-location /proxyerror/fonts/ {
-    allow all;
-
-    include include/static-assets;
-    expires 12h;
-
-    log_not_found on;
-}
-
-location /proxyerror/images/ {
-    allow all;
-
-    include include/static-assets;
-    expires 12h;
-
-    log_not_found on;
-}
-
-location /proxyerror/js/ {
-    allow all;
-
-    include include/static-assets;
-    expires 12h;
-
-    log_not_found on;
-}
-
-location /proxyerror/stylesheets/ {
-    allow all;
-
-    include include/static-assets;
-    expires 12h;
-
-    log_not_found on;
-}
-
 location = /robots.txt {
     root /etc/nginx/root/shared;
 
@@ -132,4 +59,18 @@ location = /robots.txt {
     expires 12h;
 
     try_files /robots-$host.txt /robots-wildcard.$domain_from_host.txt /robots.txt =404;
+}
+
+# Paths with parameters like "=s80" or "=c240x160" on the end are requests
+# for resizing.  Pass to fotomat.  Responses are cached for a week by
+# default; cache-control and expires headers are respected to change that.
+location ~ =p?w?[cs][0-9]*(?:x[0-9]*)?$ {
+    include include/get-only;
+    include include/no-args;
+
+    proxy_pass http://fotomat-upstream;
+
+    proxy_cache on;
+    proxy_cache_valid 200 7d;
+    proxy_cache_valid 403 404 413 415 1h;
 }

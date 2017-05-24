@@ -1,10 +1,10 @@
 # Include me in server blocks where the domain is *.example.com and we want
 # to answer both http and https requests.
 
-listen *:80;
-listen *:443 ssl;
-listen *:81;
-listen *:444 ssl;
+listen 80;
+listen [::]:80;
+listen 443 ssl;
+listen [::]:443 ssl;
 
 # This is the default certificate in global.d/default_server.conf.  Save
 # memory by not defining it again unnecessarily:
