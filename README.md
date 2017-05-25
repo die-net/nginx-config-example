@@ -1,4 +1,4 @@
-# nginx-config-example
+# nginx-config-example [![Build Status](https://api.travis-ci.org/die-net/nginx-config-example.svg?branch=master)](https://travis-ci.org/die-net/nginx-config-example)
 
 This is a complex [NginX](http://nginx.org/en/) configuration example that incorporates much of what I have learned about running NginX for years at scale at several large sites I've been involved with.
 
