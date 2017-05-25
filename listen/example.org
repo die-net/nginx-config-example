@@ -7,8 +7,8 @@ listen 443 ssl;
 listen [::]:443 ssl;
 
 # Override the default certificate in global.d/default_server.conf:
-ssl_certificate     /etc/ssl/example/wildcard.example.org.crt;
-ssl_certificate_key /etc/ssl/example/wildcard.example.org.key;
+ssl_certificate     /etc/ssl-example/wildcard.example.org.crt;
+ssl_certificate_key /etc/ssl-example/wildcard.example.org.key;
 
 userid_domain example.org;
 

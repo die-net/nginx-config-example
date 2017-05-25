@@ -8,8 +8,8 @@ listen [::]:443 ssl;
 
 # This is the default certificate in global.d/default_server.conf.  Save
 # memory by not defining it again unnecessarily:
-#ssl_certificate     /etc/ssl/example/wildcard.example.com.crt;
-#ssl_certificate_key /etc/ssl/example/wildcard.example.com.key;
+#ssl_certificate     /etc/ssl-example/wildcard.example.com.crt;
+#ssl_certificate_key /etc/ssl-example/wildcard.example.com.key;
 
 userid_domain example.com;
 
