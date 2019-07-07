@@ -5,7 +5,7 @@ FROM ubuntu:18.04
 
 RUN apt-get -q update && \
     apt-get -y -q dist-upgrade && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends ca-certificates curl geoip-database-extra openssl && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends ca-certificates curl geoip-database-extra gnupg2 openssl && \
     ln -s GeoIPCity.dat /usr/share/GeoIP/GeoLiteCity.dat && \
     mkdir /etc/ssl-example && \
     printf "\n\n\n\n\nwww.example.com\n\n" | openssl req -x509 -nodes -days 730 -newkey rsa:2048 -keyout /etc/ssl-example/wildcard.example.com.key -out /etc/ssl-example/wildcard.example.com.crt && \
