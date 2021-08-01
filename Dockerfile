@@ -1,5 +1,5 @@
 # A Dockerfile which gets a minimal nginx test environment set up, allowing
-# Travis-CI to ask nginx if this config is valid.
+# Github Actions to ask nginx if this config is valid.
 
 FROM ubuntu:18.04
 
