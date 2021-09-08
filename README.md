@@ -4,9 +4,9 @@ This is a complex [NginX](http://nginx.org/en/) configuration example that incor
 
 The most interesting features are:
 
-* A rich set of [includes](https://github.com/die-net/nginx-config-example/tree/master/include) to add functionality at the server block or location block level.
-* The use of [maps](https://github.com/die-net/nginx-config-example/blob/master/global.d/map.conf) to do complex conditionals instead of trying to rely on the limited "if".
-* The use of chained "geo" and "map" to do [conditional rate-limiting](https://github.com/die-net/nginx-config-example/blob/master/global.d/limit.conf).
+* A rich set of [includes](https://github.com/die-net/nginx-config-example/tree/main/include) to add functionality at the server block or location block level.
+* The use of [maps](https://github.com/die-net/nginx-config-example/blob/main/global.d/map.conf) to do complex conditionals instead of trying to rely on the limited "if".
+* The use of chained "geo" and "map" to do [conditional rate-limiting](https://github.com/die-net/nginx-config-example/blob/main/global.d/limit.conf).
 
 There are other goodies sprinkled throughout.
 
